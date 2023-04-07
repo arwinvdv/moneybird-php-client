@@ -3,6 +3,7 @@
 namespace Picqer\Financials\Moneybird\Actions;
 
 use Picqer\Financials\Moneybird\Exceptions\ApiException;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * @property string $id
@@ -19,7 +20,7 @@ trait Attachment
      * You can use fopen('/path/to/file', 'r') in $resource.
      *
      * @param  string  $filename  The filename of the attachment
-     * @param  resource  $contents  A StreamInterface/resource/string, @see http://docs.guzzlephp.org/en/stable/request-options.html?highlight=multipart#multipart
+     * @param  StreamInterface|resource|string  $contents  A StreamInterface/resource/string, @see http://docs.guzzlephp.org/en/stable/request-options.html?highlight=multipart#multipart
      * @return void
      *
      * @throws \Picqer\Financials\Moneybird\Exceptions\ApiException
