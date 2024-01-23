@@ -77,6 +77,10 @@ class ExternalSalesInvoice extends Model
      * @var array
      */
     protected $multipleNestedEntities = [
+        'attachments' => [
+            'entity' => ExternalSalesInvoiceAttachment::class,
+            'type' => self::NESTING_TYPE_ARRAY_OF_OBJECTS,
+        ],
         'details' => [
             'entity' => ExternalSalesInvoiceDetail::class,
             'type' => self::NESTING_TYPE_ARRAY_OF_OBJECTS,
@@ -95,26 +99,45 @@ class ExternalSalesInvoice extends Model
     }
 
     /**
-     * Register a payment for the current invoice.
+     * Register a payment for the current external sales invoice.
      *
-     * @param  ExternalSalesInvoicePayment  $salesInvoicePayment  (payment_date and price are required)
+     * @param  ExternalSalesInvoicePayment  $externalSalesInvoicePayment  (payment_date and price are required)
      * @return $this
      *
      * @throws ApiException
      */
-    public function registerPayment(ExternalSalesInvoicePayment $salesInvoicePayment)
+    public function registerPayment(ExternalSalesInvoicePayment $externalSalesInvoicePayment)
     {
-        if (! isset($salesInvoicePayment->payment_date)) {
+        if (! isset($externalSalesInvoicePayment->payment_date)) {
             throw new ApiException('Required [payment_date] is missing');
         }
 
-        if (! isset($salesInvoicePayment->price)) {
+        if (! isset($externalSalesInvoicePayment->price)) {
             throw new ApiException('Required [price] is missing');
         }
 
         $this->connection()->post($this->endpoint . '/' . $this->id . '/payments',
-            $salesInvoicePayment->jsonWithNamespace()
+            $externalSalesInvoicePayment->jsonWithNamespace()
         );
+
+        return $this;
+    }
+
+    /**
+     * Delete a payment for the current external sales invoice.
+     *
+     * @param  ExternalSalesInvoicePayment  $externalSalesInvoicePayment  (id is required)
+     * @return $this
+     *
+     * @throws ApiException
+     */
+    public function deletePayment(ExternalSalesInvoicePayment $externalSalesInvoicePayment)
+    {
+        if (! isset($externalSalesInvoicePayment->id)) {
+            throw new ApiException('Required [id] is missing');
+        }
+
+        $this->connection()->delete($this->endpoint . '/' . $this->id . '/payments/' . $externalSalesInvoicePayment->id);
 
         return $this;
     }
