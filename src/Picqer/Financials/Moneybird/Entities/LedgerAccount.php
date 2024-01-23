@@ -38,4 +38,23 @@ class LedgerAccount extends Model
      * @var string
      */
     protected $namespace = 'ledger_account';
+
+    /**
+     * Dirty fix for allowed_document_types, which is an object because of JSON_FORCE_OBJECT but should be an array.
+     * TODO: make a generic solution for this.
+     *
+     * @return string
+     */
+    public function jsonWithNamespace()
+    {
+        $json = parent::jsonWithNamespace();
+        $array = json_decode($json, true);
+
+        // Make sure allowed_document_types is always an array and not an object
+        if (isset($array['ledger_account']['allowed_document_types']) && is_object($array['ledger_account']['allowed_document_types'])) {
+            $array['ledger_account']['allowed_document_types'] = (array) $array['ledger_account']['allowed_document_types'];
+        }
+        return json_encode($array);
+    }
+
 }
