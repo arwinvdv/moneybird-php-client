@@ -10,6 +10,7 @@ use Picqer\Financials\Moneybird\Actions\Removable;
 use Picqer\Financials\Moneybird\Actions\Search;
 use Picqer\Financials\Moneybird\Actions\Storable;
 use Picqer\Financials\Moneybird\Actions\Synchronizable;
+use Picqer\Financials\Moneybird\Entities\Generic\Event;
 use Picqer\Financials\Moneybird\Exceptions\ApiException;
 use Picqer\Financials\Moneybird\Model;
 
@@ -17,8 +18,54 @@ use Picqer\Financials\Moneybird\Model;
  * Class Contact.
  *
  * @property string $id
+ * @property int|string $administration_id
+ * @property string $company_name
+ * @property ?string $firstname
+ * @property string $lastname
+ * @property string $address1
+ * @property string $address2
+ * @property string $zipcode
+ * @property string $city
+ * @property string $country
+ * @property string $phone
+ * @property string $delivery_method
+ * @property string $customer_id
+ * @property string $tax_number
+ * @property string $chamber_of_commerce
+ * @property string $bank_account
+ * @property string $attention
+ * @property string $email
+ * @property bool $email_ubl
+ * @property string $send_invoices_to_attention
+ * @property string $send_invoices_to_email
+ * @property string $send_estimates_to_attention
+ * @property string $send_estimates_to_email
+ * @property bool $sepa_active
+ * @property string $sepa_iban
+ * @property string $sepa_iban_account_name
+ * @property string $sepa_bic
+ * @property string $sepa_mandate_id
+ * @property ?string $sepa_mandate_date
+ * @property string $sepa_sequence_type
+ * @property string $credit_card_number
+ * @property string $credit_card_reference
+ * @property string $credit_card_type
+ * @property ?string $tax_number_validated_at
+ * @property ?string $tax_number_valid
+ * @property ?string $invoice_workflow_id
+ * @property ?string $estimate_workflow_id
+ * @property string $si_identifier
+ * @property ?string $si_identifier_type
+ * @property bool $moneybird_payments_mandate
+ * @property string $created_at
+ * @property string $updated_at
+ * @property int $version
+ * @property string $sales_invoices_url
+ * @property Note[] $notes
  * @property ContactCustomField[] $custom_fields
  * @property ContactPeople[] $contact_people
+ * @property bool $archived
+ * @property Event[] $events
  */
 class Contact extends Model
 {

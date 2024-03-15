@@ -7,6 +7,16 @@ use Picqer\Financials\Moneybird\Model;
 
 /**
  * Class Administration.
+ *
+ * @property int|string $id
+ * @property string $name
+ * @property string $language
+ * @property string $currency
+ * @property string $country
+ * @property string $time_zone
+ * @property string $access
+ * @property bool $suspended
+ * @property ?string $period_locked_until
  */
 class Administration extends Model
 {

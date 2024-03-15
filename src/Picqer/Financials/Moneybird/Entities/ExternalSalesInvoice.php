@@ -11,6 +11,7 @@ use Picqer\Financials\Moneybird\Actions\Removable;
 use Picqer\Financials\Moneybird\Actions\Storable;
 use Picqer\Financials\Moneybird\Actions\Synchronizable;
 use Picqer\Financials\Moneybird\Connection;
+use Picqer\Financials\Moneybird\Entities\Generic\Event;
 use Picqer\Financials\Moneybird\Exceptions\ApiException;
 use Picqer\Financials\Moneybird\Model;
 
@@ -18,7 +19,39 @@ use Picqer\Financials\Moneybird\Model;
  * Class ExternalSalesInvoice.
  *
  * @property string $id
+ * @property int|string $administration_id
+ * @property ?string $contact_id
  * @property Contact $contact
+ * @property string $date
+ * @property string $state
+ * @property ?string $due_date
+ * @property string $reference
+ * @property int $entry_number
+ * @property ?string $origin
+ * @property ?string $source
+ * @property ?string $source_url
+ * @property string $currency
+ * @property ?string $paid_at
+ * @property string $created_at
+ * @property string $updated_at
+ * @property int $version
+ * @property ExternalSalesInvoiceDetail[] $details
+ * @property ExternalSalesInvoicePayment[] $payments
+ * @property string $total_paid
+ * @property string $total_unpaid
+ * @property string $total_unpaid_base
+ * @property bool $prices_are_incl_tax
+ * @property string $total_price_excl_tax
+ * @property string $total_price_excl_tax_base
+ * @property string $total_price_incl_tax
+ * @property string $total_price_incl_tax_base
+ * @property ?string $marked_dubious_on
+ * @property ?string $marked_uncollectible_on
+ * @property Note[] $notes
+ * @property ExternalSalesInvoiceAttachment[] $attachments
+ * @property Event[] $events
+ * @property array $tax_totals
+ *
  */
 class ExternalSalesInvoice extends Model
 {

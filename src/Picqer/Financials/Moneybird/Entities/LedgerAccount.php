@@ -10,6 +10,15 @@ use Picqer\Financials\Moneybird\Model;
 
 /**
  * Class LedgerAccount.
+ *
+ * @property string $id
+ * @property string $name
+ * @property string $account_type
+ * @property string $account_id
+ * @property string $parent_id
+ * @property array $allowed_document_types
+ * @property string $created_at
+ * @property string $updated_at
  */
 class LedgerAccount extends Model
 {
