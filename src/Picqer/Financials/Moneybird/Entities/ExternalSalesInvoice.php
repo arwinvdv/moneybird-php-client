@@ -135,7 +135,7 @@ class ExternalSalesInvoice extends Model
      * Register a payment for the current external sales invoice.
      *
      * @param  ExternalSalesInvoicePayment  $externalSalesInvoicePayment  (payment_date and price are required)
-     * @return $this
+     * @return ExternalSalesInvoicePayment
      *
      * @throws ApiException
      */
@@ -149,11 +149,14 @@ class ExternalSalesInvoice extends Model
             throw new ApiException('Required [price] is missing');
         }
 
-        $this->connection()->post($this->endpoint . '/' . $this->id . '/payments',
+        $result = $this->connection()->post($this->endpoint . '/' . $this->id . '/payments',
             $externalSalesInvoicePayment->jsonWithNamespace()
         );
 
-        return $this;
+        $newPayment = new ExternalSalesInvoicePayment($this->connection(), $result);
+        $this->payments = array_merge($this->payments, [$newPayment]);
+
+        return $newPayment;
     }
 
     /**
