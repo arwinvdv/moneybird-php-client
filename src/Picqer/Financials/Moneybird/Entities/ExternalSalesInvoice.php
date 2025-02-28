@@ -154,7 +154,7 @@ class ExternalSalesInvoice extends Model
         );
 
         $newPayment = new ExternalSalesInvoicePayment($this->connection(), $result);
-        $this->payments = array_merge($this->payments, [$newPayment]);
+        $this->payments = [...$this->payments ?? [], $newPayment];
 
         return $newPayment;
     }
